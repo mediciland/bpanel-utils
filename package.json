@@ -13,19 +13,24 @@
     "url": "https://github.com/bcoin-org/bpanel-utils/issues"
   },
   "author": "Buck Perley <bucko.perley@gmail.com>",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
+    "babel": "babel lib -d dist",
     "browserify": "browserify -s index lib/index.js | uglifyjs -c > index.js",
-    "clean": "rm -f indexx.js",
+    "clean": "rm -f ./dist/*.js",
     "lint": "eslint lib/ test/ || exit 0",
-    "test": "mocha --reporter spec --compilers js:babel-core/register test/*-test.js --require babel-polyfill",
+    "prepublish": "make babel",
+    "test": "mocha --reporter spec --compilers js:babel-core/register test/*-test.js",
     "webpack": "webpack --config webpack.config.js"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babelify": "^8.0.0",
     "browserify": "^14.5.0",
     "chai": "^4.1.2",
