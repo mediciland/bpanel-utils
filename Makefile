@@ -1,6 +1,9 @@
 all:
 	@npm run browserify
 
+babel:
+	@npm run babel
+
 browserify:
 	@npm run browserify
 

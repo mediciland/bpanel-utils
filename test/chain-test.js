@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import * as chainUtils from '../lib/chain';
-import * as api from '../lib/api';
+import chainUtils from '../lib/chain';
+import api from '../lib/api';
 import fetchMock from 'fetch-mock';
 
 describe('chainUtils', () => {
