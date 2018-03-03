@@ -13,7 +13,7 @@
     "url": "https://github.com/bcoin-org/bpanel-utils/issues"
   },
   "author": "Buck Perley <bucko.perley@gmail.com>",
-  "main": "./dist/index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "babel": "babel lib -d dist",
     "browserify": "browserify -s index lib/index.js | uglifyjs -c > index.js",
