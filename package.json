@@ -23,6 +23,10 @@
     "test": "mocha --reporter spec --compilers js:babel-core/register test/*-test.js",
     "webpack": "webpack --config webpack.config.js"
   },
+  "dependencies": {
+    "bclient": "0.0.1",
+    "brq": "git+https://github.com/bucko13/brq.git#body-bug"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
