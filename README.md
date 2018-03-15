@@ -5,7 +5,7 @@ Simple helper utilities for use in bpanel plugins
 ## Usage
 
 ``` js
-const utils = require('bpanel-utils');
+const utils = require('@bpanel/bpanel-utils');
 ```
 
 ## Contribution and License Agreement
