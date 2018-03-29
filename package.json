@@ -7,8 +7,8 @@
     "bcoin"
   ],
   "license": "MIT",
-  "repository": "git://github.com/bcoin-org/bpanel-utils.git",
-  "homepage": "https://github.com/bcoin-org/bpanel-utils",
+  "repository": "git://github.com/bpanel-org/bpanel-utils.git",
+  "homepage": "http://bcoin.io/bpanel-docs",
   "bugs": {
     "url": "https://github.com/bcoin-org/bpanel-utils/issues"
   },
