@@ -27,7 +27,8 @@
     "brq": "git+https://github.com/bucko13/brq.git#body-bug"
   },
   "peerDependencies": {
-    "bclient": "^0.0.1"
+    "bclient": "^0.0.1",
+    "bmultisig": "^0.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
