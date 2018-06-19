@@ -23,9 +23,7 @@
     "test": "mocha --reporter spec --compilers js:babel-core/register test/*-test.js",
     "webpack": "webpack --config webpack.config.js"
   },
-  "dependencies": {
-    "brq": "git+https://github.com/bcoin-org/brq.git"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "bclient": "^0.1.0",
     "bmultisig": "^0.0.2"
