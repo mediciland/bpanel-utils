@@ -24,10 +24,10 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "brq": "git+https://github.com/bucko13/brq.git#body-bug"
+    "brq": "git+https://github.com/bcoin-org/brq.git"
   },
   "peerDependencies": {
-    "bclient": "^0.0.1",
+    "bclient": "^0.1.0",
     "bmultisig": "^0.0.2"
   },
   "devDependencies": {
