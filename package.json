@@ -23,11 +23,9 @@
     "test": "mocha --reporter spec --compilers js:babel-core/register test/*-test.js",
     "webpack": "webpack --config webpack.config.js"
   },
-  "dependencies": {
-    "brq": "^0.1.2"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "bclient": "^0.0.1",
+    "bclient": "^0.1.3",
     "bmultisig": "^0.0.2"
   },
   "devDependencies": {
