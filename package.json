@@ -24,7 +24,7 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "brq": "git+https://github.com/bucko13/brq.git#body-bug"
+    "brq": "^0.1.2"
   },
   "peerDependencies": {
     "bclient": "^0.0.1",
