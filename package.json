@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "bcrypto": "^1.0.0",
+    "bsert": "0.0.3",
     "bufio": "^1.0.1"
   },
   "peerDependencies": {
