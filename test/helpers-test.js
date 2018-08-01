@@ -8,7 +8,6 @@ describe('helpers', () => {
     it('should hash stringified versions of non-string inputs', () => {
       const obj = { test: 'test' };
       const stringified = JSON.stringify(obj);
-      console.log('stringified:', stringified);
       const objHash = getHash(obj);
       const stringHash = getHash(stringified);
       expect(objHash).to.equal(stringHash);
@@ -36,6 +35,22 @@ describe('helpers', () => {
       const actual = getHash(preimage, hashFunc);
       const expected = bcrypto[hashFunc].digest(preimage);
       expect(actual).to.equal(expected.toString('hex'));
+
+      // throw on unknown algos
+      const badAlgo = () => getHash(preimage, 'fake algo');
+      expect(badAlgo).to.throw();
+    });
+
+    it('should support offest and len for return string', () => {
+      const preimage = 'test';
+      const offset = 2;
+      const len = 8;
+      const actual = getHash(preimage, 'sha256', offset, len);
+      const full = getHash(preimage, 'sha256');
+      expect(actual).to.have.length(len);
+      expect(actual).to.equal(full.slice(offset, offset + len));
+      const noLen = getHash(preimage, 'sha256', 2);
+      expect(noLen).to.equal(full.slice(offset));
     });
   });
 });
