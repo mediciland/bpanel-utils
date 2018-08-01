@@ -26,11 +26,9 @@ module.exports = {
     }
   ],
   rules: {
-    'prettier/prettier': 'error',
     'no-empty': ['error', { allowEmptyCatch: true }]
   },
   extends: [
-    'prettier',
-    'eslint:recommended'
+    'prettier'
   ]
 };

@@ -9,18 +9,18 @@ describe('comparePlugins', () => {
       {
         name: 'zwallets',
         icon: 'hdd-o',
-        order: 1
+        order: 1,
       },
       {
         name: 'wallets',
         icon: 'hdd-o',
-        order: 1
+        order: 1,
       },
       {
         name: 'dashboard',
         order: 0,
-        icon: 'home'
-      }
+        icon: 'home',
+      },
     ];
     sortedPlugins = plugins.sort(comparePlugins);
   });
