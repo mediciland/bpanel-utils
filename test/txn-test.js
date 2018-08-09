@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-const { TxnManager, options } = require('../lib/txnManager.js');
+const { TxnManager, TxnManagerOptions } = require('../lib/txnManager.js');
 
 const receiveDiffWallet = require('./data/receive-different-wallet.json');
 const sendDiffWallet = require('./data/send-different-wallet.json');
@@ -16,11 +16,11 @@ describe('Transaction Manager', () => {
   it('should instantiate from options', () => {
 
     const copy = {
-      ...options.copy,
+      ...TxnManagerOptions.copy,
       SEND: 'foo',
       RECEIVE: 'bar'
     };
-    localOpts = { ...options, copy };
+    localOpts = { ...TxnManagerOptions, copy };
 
     const txnManager = TxnManager.fromOptions(localOpts);
 
@@ -30,11 +30,11 @@ describe('Transaction Manager', () => {
 
   it('should modify its constants', () => {
     const constants = {
-      ...options.constants,
+      ...TxnManagerOptions.constants,
       SEND: 'foo',
       RECEIVE: 'bar'
     };
-    localOpts = { ...options, constants };
+    localOpts = { ...TxnManagerOptions, constants };
 
     const txnManager = TxnManager.fromOptions(localOpts);
 
@@ -45,7 +45,7 @@ describe('Transaction Manager', () => {
   xit('should identify coinbase transactions', () => {
     let txns;
 
-    const txnManager = TxnManager.fromOptions(options);
+    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
 
     txns = txnManager.parse(coinbaseOne);
     assert.equal(coinbaseOne.length, txns.length);
@@ -58,7 +58,7 @@ describe('Transaction Manager', () => {
 
   // TODO: assert around uxtype
   it('should identify deposit transactions', () => {
-    const txnManager = TxnManager.fromOptions(options);
+    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
 
     const txns = txnManager.parse(receiveDiffWallet);
     assert.equal(receiveDiffWallet.length, txns.length)
@@ -66,16 +66,16 @@ describe('Transaction Manager', () => {
   });
 
   // TODO: assert around uxtype
-  xit('should identify withdrawal transactions', () => {
-    const txnManager = TxnManager.fromOptions(options);
+  it('should identify withdrawal transactions', () => {
+    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
 
     const txns = txnManager.parse(sendDiffWallet);
     assert.equal(sendDiffWallet.length, txns.length)
   });
 
   // TODO: assert around uxtype
-  xit('should identify transactions sent to same account', () => {
-    const txnManager = TxnManager.fromOptions(options);
+  it('should identify transactions sent to same account', () => {
+    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
     const txns = txnManager.parse(sendSameWalletSameAccount);
   })
 });
