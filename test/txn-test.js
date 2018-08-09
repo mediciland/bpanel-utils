@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-const { TxnManager, options } = require('../lib/txns.js');
+const { TxnManager, options } = require('../lib/txnManager.js');
 
 const receiveDiffWallet = require('./data/receive-different-wallet.json');
 const sendDiffWallet = require('./data/send-different-wallet.json');
@@ -15,12 +15,12 @@ let localOpts;
 describe('Transaction Manager', () => {
   it('should instantiate from options', () => {
 
-    const constants = {
-      ...options.constants,
+    const copy = {
+      ...options.copy,
       SEND: 'foo',
       RECEIVE: 'bar'
     };
-    localOpts = { ...options, constants };
+    localOpts = { ...options, copy };
 
     const txnManager = TxnManager.fromOptions(localOpts);
 
