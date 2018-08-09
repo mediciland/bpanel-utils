@@ -64,7 +64,7 @@ describe('Transaction Manager', () => {
 
   });
 
-  it('should identify withdrawal transactions', () => {
+  xit('should identify withdrawal transactions', () => {
     const txnManager = TxnManager.fromOptions(options);
 
     const txns = txnManager.parse(sendDiffWallet);
