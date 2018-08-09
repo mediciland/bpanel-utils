@@ -4,9 +4,10 @@
       "targets": {
         "browsers": ["last 2 versions"]
       },
+      "exclude": ["transform-es2015-classes"],
       "useBuiltins": "usage",
       "loose": true
-    }]
+    }],
   ],
   "plugins": [
     "transform-object-rest-spread",
