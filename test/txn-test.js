@@ -56,6 +56,7 @@ describe('Transaction Manager', () => {
     assert.equal(coinbaseTwo.length, txns.length)
   });
 
+  // TODO: assert around uxtype
   it('should identify deposit transactions', () => {
     const txnManager = TxnManager.fromOptions(options);
 
@@ -64,6 +65,7 @@ describe('Transaction Manager', () => {
 
   });
 
+  // TODO: assert around uxtype
   xit('should identify withdrawal transactions', () => {
     const txnManager = TxnManager.fromOptions(options);
 
@@ -71,6 +73,7 @@ describe('Transaction Manager', () => {
     assert.equal(sendDiffWallet.length, txns.length)
   });
 
+  // TODO: assert around uxtype
   xit('should identify transactions sent to same account', () => {
     const txnManager = TxnManager.fromOptions(options);
     const txns = txnManager.parse(sendSameWalletSameAccount);
