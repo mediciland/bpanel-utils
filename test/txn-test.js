@@ -42,7 +42,7 @@ describe('Transaction Manager', () => {
     assert.equal(txnManager.constants.RECEIVE, constants.RECEIVE);
   });
 
-  it('should identify coinbase transactions', () => {
+  xit('should identify coinbase transactions', () => {
     let txns;
 
     const txnManager = TxnManager.fromOptions(options);
