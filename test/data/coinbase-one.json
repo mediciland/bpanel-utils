@@ -304,39 +304,5 @@
       }
     ],
     "tx": "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff1e590e6d696e65642062792062636f696e046c5b0ec9080000000000000000ffffffff0100f2052a010000001976a914af7a3015dd91a3403b99563e69264df0d74ccdb088ac00000000"
-  },
-  {
-    "hash": "9585dc55702bfabb2d09a0d585b499ddeaca9c833cad9420c4af17579da4389d",
-    "height": 10,
-    "block": "031d1e51badebc3d1fc1dcc09fa737fdaa4423a629053980a7185179a25e13cc",
-    "time": 1533594550,
-    "mtime": 1533594549,
-    "date": "2018-08-06T22:29:10Z",
-    "mdate": "2018-08-06T22:29:09Z",
-    "size": 115,
-    "virtualSize": 115,
-    "fee": 0,
-    "rate": 0,
-    "confirmations": 1,
-    "inputs": [
-      {
-        "value": 0,
-        "address": null,
-        "path": null
-      }
-    ],
-    "outputs": [
-      {
-        "value": 5000000000,
-        "address": "RRH2hr1sQHgWpe5famA5KSkFT4Diu5Vw3N",
-        "path": {
-          "name": "default",
-          "account": 0,
-          "change": false,
-          "derivation": "m/0'/0/0"
-        }
-      }
-    ],
-    "tx": "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff1e5a0e6d696e65642062792062636f696e04b8ef9af7080000000000000000ffffffff0100f2052a010000001976a914af7a3015dd91a3403b99563e69264df0d74ccdb088ac00000000"
   }
 ]
