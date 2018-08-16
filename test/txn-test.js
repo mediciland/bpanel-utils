@@ -1,6 +1,7 @@
 import { assert } from 'chai';
-
 const { TxnManager, TxnManagerOptions } = require('../lib/txnManager.js');
+import TXUX from '../lib/uxtx.js';
+import TXUXOptions from '../lib/uxtxOptions.js';
 
 const receiveDiffWallet = require('./data/receive-different-wallet.json');
 const sendDiffWallet = require('./data/send-different-wallet.json');
@@ -13,36 +14,28 @@ const coinbaseTwo = require('./data/coinbase-two.json');
 let localOpts;
 
 describe('Transaction Manager', () => {
-  it('should instantiate from options', () => {
-
-    const copy = {
-      ...TxnManagerOptions.copy,
-      SEND: 'foo',
-      RECEIVE: 'bar'
-    };
-    localOpts = { ...TxnManagerOptions, copy };
-
-    const txnManager = TxnManager.fromOptions(localOpts);
-
+  xit('should instantiate from options', () => {
+    const txnManager = TxnManager.fromOptions({});
     assert.ok(txnManager);
-
   });
 
-  it('should modify its constants', () => {
-    const constants = {
-      ...TxnManagerOptions.constants,
+  xit('should modify its constants', () => {
+    const labels = {
+      ...TXUXOptions.labels,
       SEND: 'foo',
       RECEIVE: 'bar'
     };
-    localOpts = { ...TxnManagerOptions, constants };
+    localOpts = { ...TxnManagerOptions, labels };
 
     const txnManager = TxnManager.fromOptions(localOpts);
 
-    assert.equal(txnManager.constants.SEND, constants.SEND);
-    assert.equal(txnManager.constants.RECEIVE, constants.RECEIVE);
+    const managerLabels = txnManager.getLabels();
+
+    assert.equal(managerLabels.SEND, labels.SEND);
+    assert.equal(managerLabels.RECEIVE, labels.RECEIVE);
   });
 
-  xit('should identify coinbase transactions', () => {
+  xit('should parse all transactions', () => {
     let txns;
 
     const txnManager = TxnManager.fromOptions(TxnManagerOptions);
@@ -50,33 +43,72 @@ describe('Transaction Manager', () => {
     txns = txnManager.parse(coinbaseOne);
     assert.equal(coinbaseOne.length, txns.length);
 
+  });
+
+  xit('should be able to clear its cache', () => {
+    let txns;
+    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
+
+    // make sure transaction lists are of different length
+    assert.notEqual(coinbaseOne.length, coinbaseTwo.length);
+
+    // parse first set of txs, get all of them
+    txns = txnManager.parse(coinbaseOne);
+    assert.equal(coinbaseOne.length, txns.length);
+
+    // clear cache here
     txnManager.refresh();
 
+    // parse more transactions, list of different size
     txns = txnManager.parse(coinbaseTwo);
+
+    // asset output is of recent list size
     assert.equal(coinbaseTwo.length, txns.length)
   });
+});
 
-  // TODO: assert around uxtype
+describe('TX User Experience', () => {
+  it('should identify coinbase transactions', () => {
+    // single coinbase tx
+    const tx = coinbaseOne[0];
+
+    const options = {
+      ...TXUXOptions,
+      json: tx,
+    };
+
+    const txux = TXUX.fromRaw(tx.tx, 'hex', options);
+    const types = txux.getTypes();
+    assert.equal(txux.getUXType(), types.COINBASE);
+  });
+
   it('should identify deposit transactions', () => {
-    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
+    // single deposit tx
+    const tx = receiveDiffWallet[0];
+    const options = {
+      ...TXUXOptions,
+      json: tx,
+    };
 
-    const txns = txnManager.parse(receiveDiffWallet);
-    assert.equal(receiveDiffWallet.length, txns.length)
+    const txux = TXUX.fromRaw(tx.tx, 'hex', options);
+    const types = txux.getTypes();
+    const type = txux.getUXType();
 
+    assert.equal(type, types.DEPOSIT);
   });
 
-  // TODO: assert around uxtype
   it('should identify withdrawal transactions', () => {
-    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
+    // single coinbase tx
+    const tx = sendDiffWallet[0];
+    const options = {
+      ...TXUXOptions,
+      json: tx,
+    }
+    const txux = TXUX.fromRaw(tx.tx, 'hex', options);
+    const types = txux.getTypes();
+    const type = txux.getUXType();
 
-    const txns = txnManager.parse(sendDiffWallet);
-    assert.equal(sendDiffWallet.length, txns.length)
+    assert.equal(type, types.WITHDRAW);
   });
-
-  // TODO: assert around uxtype
-  it('should identify transactions sent to same account', () => {
-    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
-    const txns = txnManager.parse(sendSameWalletSameAccount);
-  })
 });
 
