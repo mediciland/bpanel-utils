@@ -10,7 +10,7 @@ let localOpts;
 
 describe('Transaction Manager', () => {
   it('should instantiate from options', () => {
-    const txManager = TxManager.fromOptions({});
+    const txManager = TxManager.fromOptions({ labels: {}, constants: {} });
     assert.ok(txManager);
   });
 
