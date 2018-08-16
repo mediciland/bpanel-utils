@@ -1,7 +1,7 @@
 import { assert } from 'chai';
-const { TxnManager, TxnManagerOptions } = require('../lib/txnManager.js');
-import TXUX from '../lib/uxtx.js';
-import TXUXOptions from '../lib/uxtxOptions.js';
+const { TxManager, TxManagerOptions } = require('../lib/txManager.js');
+import UXTX from '../lib/uxtx.js';
+import UXTXOptions from '../lib/uxtxOptions.js';
 
 const receiveDiffWallet = require('./data/receive-different-wallet.json');
 const sendDiffWallet = require('./data/send-different-wallet.json');
@@ -14,85 +14,85 @@ const coinbaseTwo = require('./data/coinbase-two.json');
 let localOpts;
 
 describe('Transaction Manager', () => {
-  xit('should instantiate from options', () => {
-    const txnManager = TxnManager.fromOptions({});
-    assert.ok(txnManager);
+  it('should instantiate from options', () => {
+    const txManager = TxManager.fromOptions({});
+    assert.ok(txManager);
   });
 
-  xit('should modify its constants', () => {
+  it('should modify its constants', () => {
     const labels = {
-      ...TXUXOptions.labels,
+      ...UXTXOptions.labels,
       SEND: 'foo',
       RECEIVE: 'bar'
     };
-    localOpts = { ...TxnManagerOptions, labels };
+    localOpts = { ...TxManagerOptions, labels };
 
-    const txnManager = TxnManager.fromOptions(localOpts);
+    const txManager = TxManager.fromOptions(localOpts);
 
-    const managerLabels = txnManager.getLabels();
+    const managerLabels = txManager.getLabels();
 
     assert.equal(managerLabels.SEND, labels.SEND);
     assert.equal(managerLabels.RECEIVE, labels.RECEIVE);
   });
 
-  xit('should parse all transactions', () => {
+  it('should parse all transactions', () => {
     let txns;
 
-    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
+    const txManager = TxManager.fromOptions(TxManagerOptions);
 
-    txns = txnManager.parse(coinbaseOne);
+    txns = txManager.parse(coinbaseOne);
     assert.equal(coinbaseOne.length, txns.length);
 
   });
 
-  xit('should be able to clear its cache', () => {
+  it('should be able to clear its cache', () => {
     let txns;
-    const txnManager = TxnManager.fromOptions(TxnManagerOptions);
+    const txManager = TxManager.fromOptions(TxManagerOptions);
 
     // make sure transaction lists are of different length
     assert.notEqual(coinbaseOne.length, coinbaseTwo.length);
 
     // parse first set of txs, get all of them
-    txns = txnManager.parse(coinbaseOne);
+    txns = txManager.parse(coinbaseOne);
     assert.equal(coinbaseOne.length, txns.length);
 
     // clear cache here
-    txnManager.refresh();
+    txManager.refresh();
 
     // parse more transactions, list of different size
-    txns = txnManager.parse(coinbaseTwo);
+    txns = txManager.parse(coinbaseTwo);
 
     // asset output is of recent list size
     assert.equal(coinbaseTwo.length, txns.length)
   });
 });
 
-describe('TX User Experience', () => {
+describe('User Experience TX', () => {
   it('should identify coinbase transactions', () => {
     // single coinbase tx
     const tx = coinbaseOne[0];
 
     const options = {
-      ...TXUXOptions,
+      ...UXTXOptions,
       json: tx,
     };
 
-    const txux = TXUX.fromRaw(tx.tx, 'hex', options);
-    const types = txux.getTypes();
-    assert.equal(txux.getUXType(), types.COINBASE);
+    const uxtx = UXTX.fromRaw(tx.tx, 'hex', options);
+    const types = uxtx.getTypes();
+    assert.equal(uxtx.getUXType(), types.COINBASE);
   });
 
   it('should identify deposit transactions', () => {
     // single deposit tx
     const tx = receiveDiffWallet[0];
     const options = {
-      ...TXUXOptions,
+      ...UXTXOptions,
       json: tx,
     };
 
-    const txux = TXUX.fromRaw(tx.tx, 'hex', options);
-    const types = txux.getTypes();
-    const type = txux.getUXType();
+    const uxtx = UXTX.fromRaw(tx.tx, 'hex', options);
+    const types = uxtx.getTypes();
+    const type = uxtx.getUXType();
 
     assert.equal(type, types.DEPOSIT);
   });
@@ -101,12 +101,12 @@ describe('TX User Experience', () => {
     // single coinbase tx
     const tx = sendDiffWallet[0];
     const options = {
-      ...TXUXOptions,
+      ...UXTXOptions,
       json: tx,
     }
-    const txux = TXUX.fromRaw(tx.tx, 'hex', options);
-    const types = txux.getTypes();
-    const type = txux.getUXType();
+    const uxtx = UXTX.fromRaw(tx.tx, 'hex', options);
+    const types = uxtx.getTypes();
+    const type = uxtx.getUXType();
 
     assert.equal(type, types.WITHDRAW);
   });
