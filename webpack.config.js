@@ -22,6 +22,20 @@ module.exports = {
       bcoin: path.resolve(__dirname, 'node_modules/bcoin/lib/bcoin-browser')
     }
   },
+
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets:['react', 'env']
+        }
+      }
+    ],
+  },
+
   plugins: [
     new UglifyJsPlugin()
   ]

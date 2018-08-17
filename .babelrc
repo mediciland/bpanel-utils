@@ -4,12 +4,16 @@
       "targets": {
         "browsers": ["last 2 versions"]
       },
+      "exclude": ["transform-es2015-classes"],
       "useBuiltins": "usage",
       "loose": true
-    }]
+    }],
   ],
   "plugins": [
     "transform-object-rest-spread",
+    ["transform-class-properties", {
+      "spec": true
+    }],
     ["transform-runtime", {
       "helpers": true,
       "polyfill": true,
