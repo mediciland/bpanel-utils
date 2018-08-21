@@ -1,7 +1,6 @@
 import { assert } from 'chai';
 const { TxManager, TxManagerOptions } = require('../lib/txManager.js');
-import UXTX from '../lib/uxtx.js';
-import UXTXOptions from '../lib/uxtxOptions.js';
+import { UXTX, UXTXOptions  } from '../lib/uxtx.js';
 
 const coinbaseOne = require('./data/coinbase-one.json');
 const coinbaseTwo = require('./data/coinbase-two.json');
@@ -10,24 +9,18 @@ let localOpts;
 
 describe('Transaction Manager', () => {
   it('should instantiate from options', () => {
-    const txManager = TxManager.fromOptions({ labels: {}, constants: {} });
+    const txManager = TxManager.fromOptions({});
     assert.ok(txManager);
   });
 
   it('should modify its constants', () => {
-    const labels = {
-      ...UXTXOptions.labels,
-      SEND: 'foo',
-      RECEIVE: 'bar'
+    const options = {
+      custom: () => 'foobar',
     };
-    localOpts = { ...TxManagerOptions, labels };
 
-    const txManager = TxManager.fromOptions(localOpts);
+    const txManager = TxManager.fromOptions(options);
 
-    const managerLabels = txManager.getLabels();
-
-    assert.equal(managerLabels.SEND, labels.SEND);
-    assert.equal(managerLabels.RECEIVE, labels.RECEIVE);
+    assert.equal(options.custom(), txManager._custom());
   });
 
   it('should parse all transactions', () => {
@@ -35,7 +28,7 @@ describe('Transaction Manager', () => {
 
     const txManager = TxManager.fromOptions(TxManagerOptions);
 
-    txns = txManager.parse(coinbaseOne);
+    txns = txManager.parse(coinbaseOne, UXTXOptions);
     assert.equal(coinbaseOne.length, txns.length);
 
   });
@@ -48,14 +41,14 @@ describe('Transaction Manager', () => {
     assert.notEqual(coinbaseOne.length, coinbaseTwo.length);
 
     // parse first set of txs, get all of them
-    txns = txManager.parse(coinbaseOne);
+    txns = txManager.parse(coinbaseOne, UXTXOptions);
     assert.equal(coinbaseOne.length, txns.length);
 
     // clear cache here
     txManager.refresh();
 
     // parse more transactions, list of different size
-    txns = txManager.parse(coinbaseTwo);
+    txns = txManager.parse(coinbaseTwo, UXTXOptions);
 
     // asset output is of recent list size
     assert.equal(coinbaseTwo.length, txns.length)

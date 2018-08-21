@@ -1,7 +1,6 @@
 import { assert } from 'chai';
 const { TxManager, TxManagerOptions } = require('../lib/txManager.js');
-import UXTX from '../lib/uxtx.js';
-import UXTXOptions from '../lib/uxtxOptions.js';
+import { UXTX, UXTXOptions  } from '../lib/uxtx.js';
 
 const coinbaseOne = require('./data/coinbase-one.json');
 const receiveDiffWallet = require('./data/receive-different-wallet.json');

@@ -61,16 +61,16 @@ A wrapper around `UXTX` to manage many transactions.
 
 ```js
 
-import { TxManager, TxManagerOptions } from '@bpanel/bpanel-utils';
+import { TxManager, TxManagerOptions, UXTXOptions } from '@bpanel/bpanel-utils';
 
-// use default labels and constants in TxManagerOptions
+// use default tx parsing logic
 const txManager = TxManager.fromOptions(TxManagerOptions);
 
 const account = 'default';
 const txs = await wallet.getHistory(account);
 
-// generate list of UXTX.toJSON with initial labels and constants
-const parsed = txManager.parse(txs);
+// generate list of UXTX.toJSON with default labels and constants
+const parsed = txManager.parse(txs, UXTXOptions);
 ```
 
 
