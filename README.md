@@ -63,6 +63,9 @@ A wrapper around `UXTX` to manage many transactions.
 
 import { TxManager, TxManagerOptions, UXTXOptions } from '@bpanel/bpanel-utils';
 
+// set bitcoin as the current chain
+UXTXOptions.chain = 'bitcoin';
+
 // use default tx parsing logic
 const txManager = TxManager.fromOptions(TxManagerOptions);
 
