@@ -76,6 +76,55 @@ const txs = await wallet.getHistory(account);
 const parsed = txManager.parse(txs, UXTXOptions);
 ```
 
+#### Chain
+
+This package includes helpers around the chain
+
+```js
+
+import { chain } from '@bpanel/bpanel-utils';
+
+console.log(chain.isChainSupported('bitcoin'));
+// true
+
+console.log(chain.isChainSupported('monero'));
+// false
+
+console.log(chain.isChainSupported('bitcoincash'));
+// true
+
+console.log(chain.isChainSupported('handshake'));
+// true
+```
+
+`chain.isChainSupported` is a helper function that
+returns a boolean based on whether or not the input
+string is a supported chain. The supported chains
+can be inspected in `chain.CHAINS`
+
+
+#### HD
+
+This package includes helpers around HD tree derivation
+
+```js
+
+import { COIN_TYPES, PURPOSE, HARDENED_FLAG } from '@bpanel/bpanel-utils';
+import assert from 'bsert';
+
+const bitcoin = COIN_TYPES['bitcoin']['main'];
+
+assert(bitcoin === 0);
+
+const bitcoincash = COIN_TYPES['bitcoincash']['main'];
+
+assert(bitcoincash === 145);
+
+assert(PURPOSE === 44);
+
+assert(HARDENED_FLAG === 0x80000000);
+
+```
 
 ## Contribution and License Agreement
 
