@@ -66,14 +66,16 @@ import { TxManager, TxManagerOptions, UXTXOptions } from '@bpanel/bpanel-utils';
 // set bitcoin as the current chain
 UXTXOptions.chain = 'bitcoin';
 
-// use default tx parsing logic
-const txManager = TxManager.fromOptions(TxManagerOptions);
+// use default labels and constants in TxManagerOptions
+(async () => {
+  const txManager = TxManager.fromOptions(TxManagerOptions);
 
-const account = 'default';
-const txs = await wallet.getHistory(account);
+  const account = 'default';
+  const txs = await wallet.getHistory(account);
 
-// generate list of UXTX.toJSON with default labels and constants
-const parsed = txManager.parse(txs, UXTXOptions);
+  // generate list of UXTX.toJSON with default labels and constants
+  const parsed = txManager.parse(txs, UXTXOptions);
+})();
 ```
 
 #### Chain
@@ -124,6 +126,63 @@ assert(PURPOSE === 44);
 
 assert(HARDENED_FLAG === 0x80000000);
 
+```
+
+#### BPClient
+A utility client to manage connections to a node within your app.
+It is configured to make connections via the proxy server where your bPanel app
+is served from, but should support custom connections either directly to a remote
+node or even one running on the client. It will support connecting to a bcoin, bcash,
+or handshake node.
+
+Example:
+```js
+import { BPClient } from '@bpanel/bpanel-utils';
+
+(async function() {
+  const client = new BPClient({ id: 'test', chain: 'bcoin' });
+
+  // get all available clients from your server
+  const clients = await client.getClients();
+
+  // get default client of server if one is set
+  const defaultClient = await client.getDefault();
+
+  // get info for a specific client. Defaults to
+  // the id of your client
+  const getClientInfo = await client.getClientInfo();
+
+  // get a node client to query your node with
+  const nodeClient = client.getNodeClient();
+
+  // use node client to run normal node api operations
+  const nodeInfo = await nodeClient.getInfo();
+})();
+```
+
+##### getClient
+Using `getClient` you can retrieve a global instance of BPClient within your app.
+This ensures that you are querying the same node as other plugins. The client returned
+will have all clients and methods available to the parent BPClient class.
+
+
+```js
+import { getClient } from '@bpanel/bpanel-utils';
+
+const client = getClient();
+
+(async function() {
+  if (!client.id)
+    client.setClientInfo('test', 'handshake');
+
+  // now you can start using your clients
+  // anywhere else in the app that uses the client from `getClient`
+  // will also be using the `test` clients until the info is changed again
+
+  const info = await client.node.getInfo();
+
+  console.log('info: ', info);
+})();
 ```
 
 ## Contribution and License Agreement
