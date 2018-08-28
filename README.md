@@ -129,6 +129,7 @@ assert(HARDENED_FLAG === 0x80000000);
 ```
 
 #### BPClient
+
 A utility client to manage connections to a node within your app.
 It is configured to make connections via the proxy server where your bPanel app
 is served from, but should support custom connections either directly to a remote
@@ -136,6 +137,7 @@ node or even one running on the client. It will support connecting to a bcoin, b
 or handshake node.
 
 Example:
+
 ```js
 import { BPClient } from '@bpanel/bpanel-utils';
 
@@ -161,6 +163,7 @@ import { BPClient } from '@bpanel/bpanel-utils';
 ```
 
 ##### getClient
+
 Using `getClient` you can retrieve a global instance of BPClient within your app.
 This ensures that you are querying the same node as other plugins. The client returned
 will have all clients and methods available to the parent BPClient class.
@@ -183,6 +186,22 @@ const client = getClient();
 
   console.log('info: ', info);
 })();
+```
+
+#### Bytes
+
+```js
+
+import { helpers } from '@bpanel/bpanel-utils';
+import assert from 'bsert';
+
+const twelve = 12;
+
+assert(helpers.isU8(twelve));
+
+const sixhundredtwelve = 612;
+
+assert(helpers.is16(sixhundredtwelve));
 ```
 
 ## Contribution and License Agreement
