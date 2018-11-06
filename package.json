@@ -24,7 +24,7 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "bcrypto": "^1.1.0",
+    "bcrypto": "^2.0.0",
     "bcurl": "^0.1.2",
     "bsert": "0.0.4",
     "bufio": "^1.0.1",
