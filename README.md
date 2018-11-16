@@ -204,6 +204,33 @@ const sixhundredtwelve = 612;
 assert(helpers.is16(sixhundredtwelve));
 ```
 
+#### ProxySocket
+A utility that can be passed to a bcoin or bcash node that you would like to run in
+the browser.
+
+```js
+import { ProxySocket } from '@bpanel/bpanel-utils';
+
+const node = new FullNode({
+      prune: true,
+      network: 'main',
+      memory: false,
+      coinCache: 30,
+      createSocket: (port, host) => {
+        const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        const hostname = window.location.hostname;
+        return ProxySocket.connect(
+          `${proto}://${hostname}`,
+          port,
+          host
+        );
+      }
+    });
+```
+
+Take a look at the bcoin guide to learn more about
+[running a node in the browser](https://bcoin.io/guides/browser.html)
+
 ## Contribution and License Agreement
 
 If you contribute code to this project, you are implicitly allowing your code
