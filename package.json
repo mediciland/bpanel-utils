@@ -25,24 +25,24 @@
   },
   "dependencies": {
     "bcrypto": "^2.0.0",
-    "bcurl": "^0.1.2",
+    "bcurl": "^0.1.3",
     "bsert": "0.0.4",
-    "bufio": "^1.0.1",
+    "bufio": "^1.0.2",
     "moment": "^2.22.2"
   },
   "peerDependencies": {
     "bcoin": "github:bcoin-org/bcoin.git",
-    "bclient": "^0.1.3",
-    "bmultisig": "^0.0.3",
+    "bclient": "^0.1.4",
+    "bmultisig": "^1.0.1",
     "hsd": "github:handshake-org/hsd",
-    "hs-client": "0.0.2"
+    "hs-client": "0.0.3"
   },
   "devDependencies": {
     "bcoin": "github:bcoin-org/bcoin.git",
-    "bclient": "^0.1.3",
-    "bmultisig": "^0.0.3",
+    "bclient": "^0.1.4",
+    "bmultisig": "^1.0.1",
     "hsd": "github:handshake-org/hsd.git",
-    "hs-client": "0.0.2",
+    "hs-client": "0.0.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
@@ -54,7 +54,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babelify": "^8.0.0",
-    "browserify": "^14.5.0",
+    "browserify": "^16.2.1",
     "chai": "^4.1.2",
     "eslint": "^4.14.0",
     "eslint-config-prettier": "^2.9.0",
