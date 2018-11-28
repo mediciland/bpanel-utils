@@ -111,7 +111,7 @@ This package includes helpers around HD tree derivation
 
 ```js
 
-import { COIN_TYPES, PURPOSE, HARDENED_FLAG } from '@bpanel/bpanel-utils';
+import { COIN_TYPES, PURPOSE } from '@bpanel/bpanel-utils';
 import assert from 'bsert';
 
 const bitcoin = COIN_TYPES['bitcoin']['main'];
@@ -123,9 +123,6 @@ const bitcoincash = COIN_TYPES['bitcoincash']['main'];
 assert(bitcoincash === 145);
 
 assert(PURPOSE === 44);
-
-assert(HARDENED_FLAG === 0x80000000);
-
 ```
 
 #### BPClient
@@ -201,7 +198,7 @@ assert(helpers.isU8(twelve));
 
 const sixhundredtwelve = 612;
 
-assert(helpers.is16(sixhundredtwelve));
+assert(helpers.isU16(sixhundredtwelve));
 ```
 
 #### ProxySocket

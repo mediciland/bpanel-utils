@@ -31,6 +31,7 @@
     "moment": "^2.22.2"
   },
   "peerDependencies": {
+    "bcash": "github:bcoin-org/bcash.git",
     "bcoin": "github:bcoin-org/bcoin.git",
     "bclient": "^0.1.4",
     "bmultisig": "^1.0.1",
@@ -38,6 +39,7 @@
     "hs-client": "0.0.3"
   },
   "devDependencies": {
+    "bcash": "github:bcoin-org/bcash.git",
     "bcoin": "github:bcoin-org/bcoin.git",
     "bclient": "^0.1.4",
     "bmultisig": "^1.0.1",
