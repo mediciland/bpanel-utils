@@ -4,6 +4,9 @@ all:
 babel:
 	@npm run babel
 
+watch:
+	@npm run watch
+
 browserify:
 	@npm run browserify
 

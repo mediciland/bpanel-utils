@@ -16,6 +16,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "babel": "babel lib -d dist",
+    "watch": "babel -w lib -d dist",
     "browserify": "browserify -s index lib/index.js | uglifyjs -c > index.js",
     "clean": "rm -f ./dist/*.js",
     "lint": "eslint lib/ test/ || exit 0",
