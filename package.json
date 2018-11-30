@@ -24,7 +24,6 @@
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "bcrypto": "^2.0.0",
     "bcurl": "^0.1.3",
     "bsert": "0.0.4",
     "bufio": "^1.0.2",
@@ -33,6 +32,7 @@
   "peerDependencies": {
     "bcoin": "github:bcoin-org/bcoin.git",
     "bclient": "^0.1.4",
+    "bcrypto": "^2.0.0",
     "bmultisig": "^1.0.1",
     "hsd": "github:handshake-org/hsd",
     "hs-client": "0.0.3"
@@ -40,6 +40,7 @@
   "devDependencies": {
     "bcoin": "github:bcoin-org/bcoin.git",
     "bclient": "^0.1.4",
+    "bcrypto": "^2.0.0",
     "bmultisig": "^1.0.1",
     "hsd": "github:handshake-org/hsd.git",
     "hs-client": "0.0.3",
