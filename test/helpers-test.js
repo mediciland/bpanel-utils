@@ -24,13 +24,13 @@ describe('helpers', () => {
 
     it('should hash a buffer', () => {
       const test = Buffer.from('test', 'ascii');
-      const hash = getHash(test, 'sha256');
-      const expected = bcrypto.sha256.digest(test);
+      const hash = getHash(test, 'SHA256');
+      const expected = bcrypto.SHA256.digest(test);
       expect(hash).to.equal(expected.toString('hex'));
     });
 
     it('should be able to use other hashing algos', () => {
-      const hashFunc = 'md5';
+      const hashFunc = 'MD5';
       const preimage = Buffer.from('test', 'ascii');
       const actual = getHash(preimage, hashFunc);
       const expected = bcrypto[hashFunc].digest(preimage);
@@ -45,11 +45,11 @@ describe('helpers', () => {
       const preimage = 'test';
       const offset = 2;
       const len = 8;
-      const actual = getHash(preimage, 'sha256', offset, len);
-      const full = getHash(preimage, 'sha256');
+      const actual = getHash(preimage, 'SHA256', offset, len);
+      const full = getHash(preimage, 'SHA256');
       expect(actual).to.have.length(len);
       expect(actual).to.equal(full.slice(offset, offset + len));
-      const noLen = getHash(preimage, 'sha256', 2);
+      const noLen = getHash(preimage, 'SHA256', 2);
       expect(noLen).to.equal(full.slice(offset));
     });
   });
