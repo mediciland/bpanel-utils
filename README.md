@@ -198,7 +198,7 @@ is a bcoin primitive.
 ```js
 // create a bitcoin mtx
 const hex = Buffer.from('...', 'hex');
-// first argument comes shares properties of objects returned
+// first argument shares properties of objects returned
 // by bcoin backend. second argument is the options
 const mtx = toMTX({ hex }, { type: 'raw', chain: 'bitcoin' });
 
