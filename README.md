@@ -27,8 +27,8 @@ const wallet = walletClient.wallet(id);
 
 /*
  * try fetching the hash yourself
- * curl -s https://blockchain.info/rawblock/0000000000000000000c76fd257881891a21a018c4abd13c33c9f06a822914c9 \
- *   | jq -r .tx[0].hash
+   curl -s https://blockchain.info/rawblock/0000000000000000000c76fd257881891a21a018c4abd13c33c9f06a822914c9 \
+     | jq -r .tx[0].hash
  */
 
 const hash = '6b3aafbed09f215d1f95fb06b7c204d12f7657e1bc1ff3dfa37d3248e05a430c';
@@ -183,6 +183,30 @@ const client = getClient();
 
   console.log('info: ', info);
 })();
+```
+
+#### Primitives
+
+A high level goal of bPanel is to allow for many different blockchain
+backends. To allow for dynamic switching of chains when implementing
+logic with primitives, it is possible to use objects that are keyed
+by the blockchain name to the primitive. These objects are wrapped
+with some helper functions that work via the primitive `from` methods.
+Each of the exposed functions are named `toPrimitive` where primitive
+is a bcoin primitive.
+
+```js
+// create a bitcoin mtx
+const hex = Buffer.from('...', 'hex');
+// first argument shares properties of objects returned
+// by bcoin backend. second argument is the options
+const mtx = toMTX({ hex }, { type: 'raw', chain: 'bitcoin' });
+
+// create a bitcoin cash mtx
+const bchmtx = toMTX({ hex }, { type: 'raw', chain: 'bitcoincash' });
+
+const hns = Buffer.from('...', 'hex');
+const hnsmtx = toMTX({ hex: hns }, { type: 'raw', chain: 'handshake' });
 ```
 
 #### Bytes
