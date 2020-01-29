@@ -36,6 +36,7 @@
     "bcoin": "github:bcoin-org/bcoin.git",
     "fcoin": "^1.1.3",
     "bclient": "0.1.4",
+    "@oipwg/fclient": "^0.1.7",
     "bcrypto": "3.0.1",
     "bmultisig": "1.0.1",
     "hsd": "github:handshake-org/hsd",
