@@ -21,6 +21,7 @@
     "clean": "rm -f ./dist/*.js",
     "lint": "eslint lib/ test/ || exit 0",
     "prepublish": "make babel",
+    "postinstall": "make babel",
     "test": "mocha --reporter spec -r babel-core/register -r jsdom-global/register test/*.js",
     "webpack": "webpack --config webpack.config.js"
   },
@@ -33,7 +34,9 @@
   "peerDependencies": {
     "bcash": "github:bcoin-org/bcash.git",
     "bcoin": "github:bcoin-org/bcoin.git",
+    "fcoin": "^1.1.3",
     "bclient": "0.1.4",
+    "@oipwg/fclient": "^0.1.7",
     "bcrypto": "3.0.1",
     "bmultisig": "1.0.1",
     "hsd": "github:handshake-org/hsd",
